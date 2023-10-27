@@ -28889,7 +28889,7 @@ if ("development" === 'production') {
     }
   };
 }
-},{"react-dom":"../node_modules/react-dom/index.js"}],"components/movie-card/movie-card.jsx":[function(require,module,exports) {
+},{"react-dom":"../node_modules/react-dom/index.js"}],"src/components/movie-card/movie-card.jsx":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -28909,7 +28909,7 @@ var MovieCard = exports.MovieCard = function MovieCard(_ref) {
     }
   }, movie.title));
 };
-},{"react":"../node_modules/react/index.js"}],"components/movie-view/movie-view.jsx":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js"}],"src/components/movie-view/movie-view.jsx":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -28932,7 +28932,7 @@ var MovieView = exports.MovieView = function MovieView(_ref) {
     onClick: onBackClick
   }, "Back"));
 };
-},{}],"components/main-view/main-view.jsx":[function(require,module,exports) {
+},{}],"src/components/main-view/main-view.jsx":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -29023,7 +29023,7 @@ var MainView = exports.MainView = function MainView() {
     });
   }));
 };
-},{"react":"../node_modules/react/index.js","../movie-card/movie-card":"components/movie-card/movie-card.jsx","../movie-view/movie-view":"components/movie-view/movie-view.jsx"}],"../../../../../AppData/Roaming/nvm/v18.18.2/node_modules/parcel-bundler/src/builtins/bundle-url.js":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","../movie-card/movie-card":"src/components/movie-card/movie-card.jsx","../movie-view/movie-view":"src/components/movie-view/movie-view.jsx"}],"../../../../../AppData/Roaming/nvm/v18.18.2/node_modules/parcel-bundler/src/builtins/bundle-url.js":[function(require,module,exports) {
 var bundleURL = null;
 function getBundleURLCached() {
   if (!bundleURL) {
@@ -29082,15 +29082,15 @@ module.hot.accept(reloadCSS);
 "use strict";
 
 var _client = require("react-dom/client");
-var _mainView = require("./components/main-view/main-view");
-require("./index.scss");
+var _mainView = require("./src/components/main-view/main-view");
+require("/index.scss");
 var App = function App() {
   return /*#__PURE__*/React.createElement(_mainView.MainView, null);
 };
 var container = document.querySelector("#root");
 var root = (0, _client.createRoot)(container);
 root.render( /*#__PURE__*/React.createElement(App, null));
-},{"react-dom/client":"../node_modules/react-dom/client.js","./components/main-view/main-view":"components/main-view/main-view.jsx","./index.scss":"index.scss"}],"../../../../../AppData/Roaming/nvm/v18.18.2/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"react-dom/client":"../node_modules/react-dom/client.js","./src/components/main-view/main-view":"src/components/main-view/main-view.jsx","/index.scss":"index.scss"}],"../../../../AppData/Roaming/nvm/v18.18.2/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -29115,7 +29115,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "55036" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53105" + '/');
   ws.onmessage = function (event) {
     checkedAssets = {};
     assetsToAccept = [];
@@ -29259,5 +29259,5 @@ function hmrAcceptRun(bundle, id) {
     return true;
   }
 }
-},{}]},{},["../../../../../AppData/Roaming/nvm/v18.18.2/node_modules/parcel-bundler/src/builtins/hmr-runtime.js","index.jsx"], null)
-//# sourceMappingURL=/src.78399e21.js.map
+},{}]},{},["../../../../AppData/Roaming/nvm/v18.18.2/node_modules/parcel-bundler/src/builtins/hmr-runtime.js","index.jsx"], null)
+//# sourceMappingURL=/myFlix-client-mi.78399e21.js.map
