@@ -2,6 +2,7 @@
   "name": "myflix-client-mi",
   "version": "1.0.0",
   "description": "A client side movie application.",
+  "main": "src/index.jsx",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -12,6 +13,7 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
+  "keywords": [],
   "devDependencies": {
     "parcel": "^2.10.0",
     "sass": "^1.69.4"
