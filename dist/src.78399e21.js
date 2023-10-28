@@ -28901,13 +28901,13 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var MovieCard = exports.MovieCard = function MovieCard(_ref) {
   var movie = _ref.movie,
     onMovieClick = _ref.onMovieClick;
-  return /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("button", {
-    className: "movie-card" // Add a class for styling if needed
+  return /*#__PURE__*/_react.default.createElement("div", {
+    className: "movie-card" // Add a class for styling if needed onClick=
     ,
     onClick: function onClick() {
       onMovieClick(movie);
     }
-  }, movie.title));
+  }, movie.title);
 };
 },{"react":"../node_modules/react/index.js"}],"components/movie-view/movie-view.jsx":[function(require,module,exports) {
 "use strict";
@@ -29119,7 +29119,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "65316" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51801" + '/');
   ws.onmessage = function (event) {
     checkedAssets = {};
     assetsToAccept = [];
