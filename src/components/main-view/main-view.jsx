@@ -16,7 +16,7 @@ export const MainView = () => {
       },
       year: "1998",
       image:
-        "https://www.imdb.com/title/tto120815/mediaviewer/rm1924732160/?ref_=tt_ov_i.jpg",
+        "https://m.media-amazon.com/images/M/MV5BZjhkMDM4MWItZTVjOC00ZDRhLThmYTAtM2I5NzBmNmNlMzI1XkEyXkFqcGdeQXVyNDYyMDk5MTU@._V1_.jpg",
       director: {
         name: "Steven Spielberg",
         bio: "One of the most influencial personalities in the history of cinema, Steven Sielberg is Hollywood's best known director and one of the wealthiest filmmakers in the world.",
@@ -40,7 +40,7 @@ export const MainView = () => {
         birthyear: "1959-05-03",
       },
       image:
-        "https://www.imdb.com/title/tt0111161/mediaviewer/rm1690056449/?ref_=tt_ov_i.jpg",
+        "https://m.media-amazon.com/images/M/MV5BNDE3ODcxYzMtY2YzZC00NmNlLWJiNDMtZDViZWM2MzIxZDYwXkEyXkFqcGdeQXVyNjAwNDUxODI@._V1_.jpg",
     },
     {
       id: 3,
@@ -59,7 +59,7 @@ export const MainView = () => {
           "Romance films involve romantic love stories recorded in visual media for broadcast in theatres or on television that focus on passion, emotion, and the affectionate romantic involvement of the main characters. Typically their journey through dating.",
       },
       image:
-        "https://www.imdb.com/title/tt0109830/mediaviewer/rm1954748672/?ref_=tt_ov_i.jpg",
+        "https://images.thalia.media/-/BF2000-2000/e280381e7f854702b5e8d12ca24cd0d1/forrest-gump-taschenbuch-winston-groom-englisch.jpeg",
     },
   ]);
 
