@@ -28925,7 +28925,11 @@ var MovieView = exports.MovieView = function MovieView(_ref) {
     className: "movie-image"
   }, /*#__PURE__*/React.createElement("img", {
     src: movie.image,
-    alt: movie.title
+    alt: movie.title,
+    style: {
+      width: "200px",
+      height: "300px"
+    }
   })), /*#__PURE__*/React.createElement("div", {
     className: "movie-info"
   }, /*#__PURE__*/React.createElement("h2", null, movie.title), /*#__PURE__*/React.createElement("p", null, /*#__PURE__*/React.createElement("strong", null, "Description:"), " ", movie.description), /*#__PURE__*/React.createElement("p", null, /*#__PURE__*/React.createElement("strong", null, "Genres:"), " ", movie.genres.name), /*#__PURE__*/React.createElement("p", null, /*#__PURE__*/React.createElement("strong", null, "Director:"), " ", movie.director.name), /*#__PURE__*/React.createElement("p", null, /*#__PURE__*/React.createElement("strong", null, "Release year:"), " ", movie.year)), /*#__PURE__*/React.createElement("button", {
@@ -28958,7 +28962,7 @@ var MainView = exports.MainView = function MainView() {
         description: "War film is a film genre concerned with warfare, typically about naval, air, or land battles, with combat scenes central to the drama"
       },
       year: "1998",
-      image: "https://www.imdb.com/title/tto120815/mediaviewer/rm1924732160/?ref_=tt_ov_i.jpg",
+      image: "https://m.media-amazon.com/images/M/MV5BZjhkMDM4MWItZTVjOC00ZDRhLThmYTAtM2I5NzBmNmNlMzI1XkEyXkFqcGdeQXVyNDYyMDk5MTU@._V1_.jpg",
       director: {
         name: "Steven Spielberg",
         bio: "One of the most influencial personalities in the history of cinema, Steven Sielberg is Hollywood's best known director and one of the wealthiest filmmakers in the world.",
@@ -28978,7 +28982,7 @@ var MainView = exports.MainView = function MainView() {
         bio: "Three-time Oscar nominee Frank Darabont was born in a refugee camp in 1959 in Montbeliard, France, the son of Hungarian parents who had fled Budapest during the failed 1956 Hungarian revolution. Brought to America as an infant, he settled with his family in Los Angeles and attended Hollywood High School. His first job in movies was as a production assistant on the 1981 low-budget film",
         birthyear: "1959-05-03"
       },
-      image: "https://www.imdb.com/title/tt0111161/mediaviewer/rm1690056449/?ref_=tt_ov_i.jpg"
+      image: "https://m.media-amazon.com/images/M/MV5BNDE3ODcxYzMtY2YzZC00NmNlLWJiNDMtZDViZWM2MzIxZDYwXkEyXkFqcGdeQXVyNjAwNDUxODI@._V1_.jpg"
     }, {
       id: 3,
       title: "Forrest Gump",
@@ -28993,7 +28997,7 @@ var MainView = exports.MainView = function MainView() {
         name: "Romance",
         description: "Romance films involve romantic love stories recorded in visual media for broadcast in theatres or on television that focus on passion, emotion, and the affectionate romantic involvement of the main characters. Typically their journey through dating."
       },
-      image: "https://www.imdb.com/title/tt0109830/mediaviewer/rm1954748672/?ref_=tt_ov_i.jpg"
+      image: "https://images.thalia.media/-/BF2000-2000/e280381e7f854702b5e8d12ca24cd0d1/forrest-gump-taschenbuch-winston-groom-englisch.jpeg"
     }]),
     _useState2 = _slicedToArray(_useState, 2),
     movies = _useState2[0],
@@ -29115,7 +29119,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "55036" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "65316" + '/');
   ws.onmessage = function (event) {
     checkedAssets = {};
     assetsToAccept = [];
