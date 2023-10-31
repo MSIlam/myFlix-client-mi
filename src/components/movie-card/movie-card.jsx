@@ -1,3 +1,5 @@
+import PropTypes from "prop-types";
+
 import React from "react";
 
 export const MovieCard = ({ movie, onMovieClick }) => {
@@ -11,4 +13,12 @@ export const MovieCard = ({ movie, onMovieClick }) => {
       <button>{movie.title}</button>
     </div>
   );
+};
+
+// defining the prop constrains
+MovieCard.propTypes = {
+  movie: PropTypes.shape({
+    Title: PropTypes.string.isRequired,
+  }).isRequired,
+  onMovieClick: PropTypes.func.isRequired,
 };
