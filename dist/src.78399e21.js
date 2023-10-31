@@ -29845,21 +29845,8 @@ var MovieCard = exports.MovieCard = function MovieCard(_ref) {
 // defining the prop constrains
 MovieCard.propTypes = {
   movie: _propTypes.default.shape({
-    id: _propTypes.default.string.isRequired,
-    title: _propTypes.default.string.isRequired,
-    image: _propTypes.default.string,
-    year: _propTypes.default.string,
-    description: _propTypes.default.string.isRequired,
-    genres: _propTypes.default.shape({
-      name: _propTypes.default.string,
-      description: _propTypes.default.string
-    }),
-    director: _propTypes.default.shape({
-      name: _propTypes.default.string,
-      bio: _propTypes.default.string,
-      birthyear: _propTypes.default.string
-    })
-  }),
+    Title: _propTypes.default.string.isRequired
+  }).isRequired,
   onMovieClick: _propTypes.default.func.isRequired
 };
 },{"prop-types":"../node_modules/prop-types/index.js","react":"../node_modules/react/index.js"}],"components/movie-view/movie-view.jsx":[function(require,module,exports) {
@@ -29869,6 +29856,8 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.MovieView = void 0;
+var _propTypes = _interopRequireDefault(require("prop-types"));
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 var MovieView = exports.MovieView = function MovieView(_ref) {
   var movie = _ref.movie,
     onBackClick = _ref.onBackClick;
@@ -29877,19 +29866,40 @@ var MovieView = exports.MovieView = function MovieView(_ref) {
   }, /*#__PURE__*/React.createElement("div", {
     className: "movie-image"
   }, /*#__PURE__*/React.createElement("img", {
-    src: movie.image,
-    alt: movie.title,
+    src: movie.ImageURL,
+    alt: movie.Title,
     style: {
       width: "200px",
       height: "300px"
     }
   })), /*#__PURE__*/React.createElement("div", {
     className: "movie-info"
-  }, /*#__PURE__*/React.createElement("h2", null, movie.title), /*#__PURE__*/React.createElement("p", null, /*#__PURE__*/React.createElement("strong", null, "Description:"), " ", movie.description), /*#__PURE__*/React.createElement("p", null, /*#__PURE__*/React.createElement("strong", null, "Genres:"), " ", movie.genres.name), /*#__PURE__*/React.createElement("p", null, /*#__PURE__*/React.createElement("strong", null, "Director:"), " ", movie.director.name), /*#__PURE__*/React.createElement("p", null, /*#__PURE__*/React.createElement("strong", null, "Release year:"), " ", movie.year)), /*#__PURE__*/React.createElement("button", {
+  }, /*#__PURE__*/React.createElement("h2", null, movie.Title), /*#__PURE__*/React.createElement("p", null, /*#__PURE__*/React.createElement("strong", null, "Description:"), " ", movie.Description), /*#__PURE__*/React.createElement("p", null, /*#__PURE__*/React.createElement("strong", null, "Genres:"), " ", movie.Genres.Name), /*#__PURE__*/React.createElement("p", null, /*#__PURE__*/React.createElement("strong", null, "Director:"), " ", movie.Director.Name), /*#__PURE__*/React.createElement("p", null, /*#__PURE__*/React.createElement("strong", null, "Release year:"), " ", movie.Year)), /*#__PURE__*/React.createElement("button", {
     onClick: onBackClick
   }, "Back"));
 };
-},{}],"components/main-view/main-view.jsx":[function(require,module,exports) {
+
+// Proptype conditions
+MovieView.propTypes = {
+  movie: _propTypes.default.shape({
+    Title: _propTypes.default.string.isRequired,
+    ImageURL: _propTypes.default.string,
+    Description: _propTypes.default.string,
+    Genres: _propTypes.default.shape({
+      Name: _propTypes.default.string,
+      Description: _propTypes.default.string
+    }),
+    Director: _propTypes.default.shape({
+      Name: _propTypes.default.string,
+      Bio: _propTypes.default.string,
+      Birthyear: _propTypes.default.string
+    }),
+    Stars: _propTypes.default.string,
+    Year: _propTypes.default.string
+  }).isRequired,
+  onMovieClick: _propTypes.default.func.isRequired
+};
+},{"prop-types":"../node_modules/prop-types/index.js"}],"components/main-view/main-view.jsx":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -29922,12 +29932,19 @@ var MainView = exports.MainView = function MainView() {
       var moviesFromApi = data.movies.map(function (movie) {
         return {
           id: movie._id,
-          title: movie.Title,
-          image: movie.ImageURL,
-          description: movie.Description,
-          genres: movie.Genres,
-          director: movie.Director,
-          stars: movie.Stars
+          Title: movie.Title,
+          ImageURL: movie.ImageURL,
+          Description: movie.Description,
+          Genres: {
+            Name: movie.Genres.Name,
+            Description: movie.Genres.Description
+          },
+          Director: {
+            Name: movie.Director.Name,
+            Bio: movie.Director.Bio
+          },
+          Stars: movie.Stars,
+          Year: movie.Year
         };
       });
       setMovies(moviesFromApi);
@@ -30046,7 +30063,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52258" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54542" + '/');
   ws.onmessage = function (event) {
     checkedAssets = {};
     assetsToAccept = [];
