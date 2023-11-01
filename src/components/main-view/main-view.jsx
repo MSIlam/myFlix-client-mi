@@ -8,12 +8,13 @@ export const MainView = () => {
 
   const [selectedMovie, setSelectedMovie] = useState(null);
 
+  // Hooking
   useEffect(() => {
     fetch("https://myflix-mi-e89972ef7472.herokuapp.com/movies")
       .then((response) => response.json())
       .then((data) => {
         console.log(data);
-        const moviesFromApi = data.movies.map((movie) => {
+        const moviesFromApi = data.map((movie) => {
           return {
             id: movie._id,
             Title: movie.Title,
