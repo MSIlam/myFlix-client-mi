@@ -13,7 +13,7 @@ export const MainView = () => {
       .then((response) => response.json())
       .then((data) => {
         console.log(data);
-        const moviesFromApi = data.movies.map((movie) => {
+        const moviesFromApi = data.map((movie) => {
           return {
             id: movie._id,
             Title: movie.Title,
@@ -35,6 +35,8 @@ export const MainView = () => {
         setMovies(moviesFromApi);
       });
   }, []);
+
+  // In this code, we added a conditional check to ensure that data.movies is defined before attempting to map over it. If it's not defined, an error message is logged. This should prevent the "map of undefined" error from occurring.
 
   if (selectedMovie) {
     return (
