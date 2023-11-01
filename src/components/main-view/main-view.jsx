@@ -8,6 +8,7 @@ export const MainView = () => {
 
   const [selectedMovie, setSelectedMovie] = useState(null);
 
+  // Hooking
   useEffect(() => {
     fetch("https://myflix-mi-e89972ef7472.herokuapp.com/movies")
       .then((response) => response.json())
@@ -35,8 +36,6 @@ export const MainView = () => {
         setMovies(moviesFromApi);
       });
   }, []);
-
-  // In this code, we added a conditional check to ensure that data.movies is defined before attempting to map over it. If it's not defined, an error message is logged. This should prevent the "map of undefined" error from occurring.
 
   if (selectedMovie) {
     return (
