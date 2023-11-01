@@ -29834,12 +29834,12 @@ var MovieCard = exports.MovieCard = function MovieCard(_ref) {
   var movie = _ref.movie,
     onMovieClick = _ref.onMovieClick;
   return /*#__PURE__*/_react.default.createElement("div", {
-    className: "movie-card" // Add a class for styling if needed onClick=
+    className: "movie-card" // Add a class for styling if needed onClick
     ,
     onClick: function onClick() {
       onMovieClick(movie);
     }
-  }, /*#__PURE__*/_react.default.createElement("button", null, movie.title));
+  }, movie.Title);
 };
 
 // defining the prop constrains
@@ -30063,7 +30063,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54542" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54415" + '/');
   ws.onmessage = function (event) {
     checkedAssets = {};
     assetsToAccept = [];
