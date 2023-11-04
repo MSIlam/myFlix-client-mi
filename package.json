@@ -17,6 +17,9 @@
   "keywords": [],
   "devDependencies": {
     "@parcel/transformer-sass": "^2.10.1",
+    "eslint": "^8.53.0",
+    "eslint-plugin-jsx-a11y": "^6.8.0",
+    "eslint-plugin-react": "^7.33.2",
     "parcel": "^2.10.1",
     "process": "^0.11.10",
     "prop-types": "^15.8.1",
