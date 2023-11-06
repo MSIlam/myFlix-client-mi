@@ -11,3 +11,6 @@ Using React, build the client-side for an app called myFlix based on its existin
 - The application would contain function components
 - The application would be hosted online
 - The application would use React Redux for state management of at least one feature (i.e., filtering movies)
+### Tech stack
+- React
+- React Bootstrap
