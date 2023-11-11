@@ -14,3 +14,4 @@ Using React, build the client-side for an app called myFlix based on its existin
 ### Tech stack
 - React
 - React Bootstrap
+- React Router
