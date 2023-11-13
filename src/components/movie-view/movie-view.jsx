@@ -1,39 +1,46 @@
 import "./movie-view.scss";
 import PropTypes from "prop-types";
-import Button from "react-bootstrap/Button";
+import { Card, Button, Col, Container, Row } from "react-bootstrap";
 
 export const MovieView = ({ movie, onBackClick }) => {
   return (
-    <div className="movie-details">
-      <div className="movie-image">
-        <img src={movie.ImageURL} alt={movie.Title} style={{ width: "100%" }} />
-      </div>
-      <div className="movie-info">
-        <h2>{movie.Title}</h2>
-        <p>
-          <strong>Description:</strong> {movie.Description}
-        </p>
-        <p>
-          <strong>Genres:</strong> {movie.Genres.Name}
-        </p>
-        <p>
-          <strong>Director:</strong> {movie.Director.Name}
-        </p>
-        <p>
-          <strong>Release year:</strong> {movie.Year}
-        </p>
-        <p>
-          <strong>Actors:</strong> {movie.Stars}
-        </p>
-      </div>
-      <Button
-        onClick={onBackClick}
-        className="back-button"
-        style={{ cursor: "pointer" }}
-      >
-        Back
-      </Button>
-    </div>
+    <Container>
+      <Row className="movie-details justify-content-md-center">
+        <Col className=" col-lg-6 ">
+          <Card className="movie-image">
+            <Card.Img
+              src={movie.ImageURL}
+              alt={movie.Title}
+              style={{ width: "100%" }}
+            />
+          </Card>
+        </Col>
+        <Col className="col-lg-6">
+          <Card>
+            <Card.Body>
+              <Card.Title>{movie.Title}</Card.Title>
+              <Card.Title>Description:</Card.Title>
+              <Card.Text>{movie.Description}</Card.Text>
+              <Card.Title>Genres:</Card.Title>
+              <Card.Text>{movie.Genres.Name}</Card.Text>
+              <Card.Title>Director:</Card.Title>
+              <Card.Text>{movie.Director.Name}</Card.Text>
+              <Card.Title>Release year:</Card.Title>
+              <Card.Text>{movie.Year}</Card.Text>
+              <Card.Title>Actors:</Card.Title>
+              <Card.Text>{movie.Stars}</Card.Text>
+            </Card.Body>
+            <Button
+              onClick={onBackClick}
+              className="back-button"
+              style={{ cursor: "pointer" }}
+            >
+              Back
+            </Button>
+          </Card>
+        </Col>
+      </Row>
+    </Container>
   );
 };
 
