@@ -6,36 +6,48 @@ import { Link } from "react-router-dom";
 
 export const NaviBar = ({ user, onLoggedOut }) => {
   return (
-    <Navbar className="bg-body-tertiary" expand="xxl" bg="dark" fixed="top">
+    <Navbar
+      className="bg-body-tertiary"
+      expand="lg"
+      fixed="top"
+      bg="dark"
+      data-bs-theme="dark"
+    >
       <Container fluid>
-        <Navbar.Brand as={Link} to="/">
+        <Navbar.Brand
+          as={Link}
+          to="/"
+          style={{ color: "darkred", fontWeight: "bold" }}
+        >
           My Flix
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse className="justify-content-end" id="basic-navbar-nav">
-          <Nav className="me-auto">
+          <Nav variant="pills" className="me-auto">
             {!user && (
               <React.Fragment>
-                <Nav.Link as={Link} to="/login">
+                <Nav.Link as={Link} to="/login" style={{ color: "white" }}>
                   Login
                 </Nav.Link>
-                <Nav.Link as={Link} to="/signup">
+                <Nav.Link as={Link} to="/signup" style={{ color: "white" }}>
                   Signup
                 </Nav.Link>
               </React.Fragment>
             )}
             {user && (
               <React.Fragment>
-                <Nav.Link as={Link} to="/">
-                  Home
+                <Nav.Link as={Link} to="/profile" style={{ color: "white" }}>
+                  My Profile
                 </Nav.Link>
-                <Nav.Link onClick={onLoggedOut}>Logout</Nav.Link>
               </React.Fragment>
             )}
             {user && (
               <React.Fragment>
-                <Nav.Link as={Link} to="/profile">
-                  Profile
+                <Nav.Link as={Link} to="/" style={{ color: "white" }}>
+                  Home
+                </Nav.Link>
+                <Nav.Link onClick={onLoggedOut} style={{ color: "white" }}>
+                  Logout
                 </Nav.Link>
               </React.Fragment>
             )}
@@ -47,7 +59,10 @@ export const NaviBar = ({ user, onLoggedOut }) => {
                 <strong>{user.Username}</strong>
               </span>
             ) : (
-              <Link to="/login"> Not Yet</Link>
+              <Link to="/login" style={{ color: "white" }}>
+                {" "}
+                None{" "}
+              </Link>
             )}
           </Navbar.Text>
         </Navbar.Collapse>

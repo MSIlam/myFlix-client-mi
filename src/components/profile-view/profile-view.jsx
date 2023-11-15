@@ -1,15 +1,11 @@
-//
 import React, { useState, useEffect } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
-import "./profile-view.scss";
-// import Card from "react-bootstrap/Card";
-// import { Link } from "react-router-dom";
-// import FavoriteMovies from "./favorite-movies";
+import Card from "react-bootstrap/Card";
+import { Link } from "react-router-dom";
+import { Container, Row, Col } from "react-bootstrap";
 
-// import { MovieCard } from "../movie-card/movie-card";
-
-export const ProfileView = () => {
+export const ProfileView = ({ movie, movies }) => {
   const [user, setUserData] = useState(null);
   const [formData, setFormData] = useState({
     Username: "",
@@ -17,50 +13,26 @@ export const ProfileView = () => {
     Email: "",
     Birthday: "",
   });
-  const [storedToken, setStoredToken] = useState(null);
-  // const favoriteMovieList =
-  //   user && user.FavouriteMovies
-  //     ? movies.filter((movie) => user.FavouriteMovies.includes(movie._id))
-  //     : [];
-  // const removeFav = (movieId) => {
-  //   // Implement the logic to remove the movie with the specified ID from the favorites
-  //   const updatedFavorites = user.FavouriteMovies.filter(
-  //     (id) => id !== movieId
-  //   );
 
-  // Update the user's data in local storage and state
-  //   const updatedUser = { ...user, FavouriteMovies: updatedFavorites };
-  //   localStorage.setItem("user", JSON.stringify(updatedUser));
-  //   setUserData(updatedUser);
-  // };
+  const [storedToken, setStoredToken] = useState(null);
 
   useEffect(() => {
-    // Assuming you already have the user information available in the state or from local storage
     const storedUser = JSON.parse(localStorage.getItem("user"));
     const token = localStorage.getItem("token");
+
     if (storedUser && token) {
       setUserData(storedUser);
       setFormData({
         Username: storedUser.Username || "",
         Password: storedUser.Password || "",
         Email: storedUser.Email || "",
-        Birthday: storedUser.Birthday || "",
+        Birthday: new Date(storedUser.Birthday).toISOString().split("T")[0],
       });
       setStoredToken(token);
     } else {
       console.error("User data not available");
     }
   }, []);
-
-  // Format the birthday to "yyyy-MM-dd"
-  const formattedBirthday = new Date(formData.Birthday).toLocaleDateString(
-    "en-CA",
-    {
-      year: "numeric",
-      month: "2-digit",
-      day: "2-digit",
-    }
-  );
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -69,12 +41,8 @@ export const ProfileView = () => {
 
   const handleUpdate = (e) => {
     e.preventDefault();
-    // Assuming the user ID available
-    const userId = user._id;
-    // Format the birthday to "yyyy-MM-dd"
-    // const formattedBirthday = new Date(formData.Birthday).toISOString().split('T')[0];
 
-    fetch(`https://myflix-mi-e89972ef7472.herokuapp.com/users/${userId}`, {
+    fetch(`https://myflix-mi-e89972ef7472.herokuapp.com/users/${user._id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -82,14 +50,11 @@ export const ProfileView = () => {
       },
       body: JSON.stringify({
         ...formData,
-        Birthday: formattedBirthday,
       }),
     })
       .then((response) => response.json())
       .then((updatedUser) => {
         console.log("User updated:", updatedUser);
-        // Assuming a function to update the user state
-        // setUser(updatedUser);
         localStorage.setItem("user", JSON.stringify(updatedUser));
         setUserData(updatedUser);
       })
@@ -97,14 +62,12 @@ export const ProfileView = () => {
         console.error("Error updating user:", error);
       });
   };
-  const handleDelete = () => {
-    const userId = user._id;
-    console.log("Token:", storedToken);
 
-    fetch(`https://myflix-mi-e89972ef7472.herokuapp.com/users/${userId}`, {
+  const handleDelete = () => {
+    fetch(`https://myflix-mi-e89972ef7472.herokuapp.com/users/${user._id}`, {
       method: "DELETE",
       headers: {
-        Authorization: `Bearer ${storedToken}`, // Use the token directly from props
+        Authorization: `Bearer ${storedToken}`,
       },
     })
       .then((response) => {
@@ -120,62 +83,129 @@ export const ProfileView = () => {
       });
   };
 
+  const removeFavorites = (movieId) => {
+    fetch(
+      `https://myflix-mi-e89972ef7472.herokuapp.com/users/${user._id}/movies/${movieId}`,
+      {
+        method: "DELETE",
+        headers: { Authorization: `Bearer ${storedToken}` },
+      }
+    )
+      .then(() => {
+        // Remove the movieId from the FavouriteMovies array in user state
+        setUserData((prevUser) => {
+          const updatedUser = { ...prevUser };
+          updatedUser.FavouriteMovies = updatedUser.FavouriteMovies.filter(
+            (id) => id !== movieId
+          );
+          return updatedUser;
+        });
+      })
+      .catch((error) => {
+        console.error("Error removing movie from favorites:", error);
+      });
+  };
   return (
-    <div style={{ marginTop: "60px", padding: "20px" }}>
-      {user ? (
-        <div>
-          <h2>{user.Username || "Username not available"}</h2>
-          <p>Email: {user.Email || "Email not available"}</p>
-          <p>Birthday: {user.Birthday || "Birthday not available"}</p>
-          <div>
-            <Form onSubmit={handleUpdate}>
-              <Form.Group controlId="formUsername">
-                <Form.Label>Username:</Form.Label>
-                <Form.Control
-                  type="text"
-                  name="Username"
-                  value={formData.Username}
-                  onChange={handleInputChange}
-                />
-              </Form.Group>
-              <Form.Group controlId="formPassword">
-                <Form.Label>Password:</Form.Label>
-                <Form.Control
-                  type="password"
-                  name="Password"
-                  value={formData.Password}
-                  onChange={handleInputChange}
-                />
-              </Form.Group>
-              <Form.Group controlId="formEmail">
-                <Form.Label>Email:</Form.Label>
-                <Form.Control
-                  type="email"
-                  name="Email"
-                  value={formData.Email}
-                  onChange={handleInputChange}
-                />
-              </Form.Group>
-              <Form.Group controlId="formBirthday">
-                <Form.Label>Birthday:</Form.Label>
-                <Form.Control
-                  type="date"
-                  name="Birthday"
-                  value={formData.Birthday}
-                  onChange={handleInputChange}
-                />
-              </Form.Group>
-              <Button type="submit">Update</Button>
-              <Button onClick={handleDelete} variant="danger">
-                Deregister
-              </Button>
-            </Form>
-            {console.log("User Data:", user)}
-          </div>
-        </div>
-      ) : (
-        <p>Error loading user data</p>
-      )}
-    </div>
+    <Container>
+      <Row style={{ marginTop: "30px", padding: "10px" }}>
+        {user ? (
+          <React.Fragment>
+            <h2>{user.Username || "Username not available"}</h2>
+            <p>Email: {user.Email || "Email not available"}</p>
+            <p>Birthday: {user.Birthday || "Birthday not available"}</p>
+          </React.Fragment>
+        ) : (
+          <p>Error loading user data</p>
+        )}
+      </Row>
+      <Row>
+        <h3>Favorite Movies</h3>
+        {user && user.FavouriteMovies ? (
+          user.FavouriteMovies.map((movieId) => {
+            const movie = movies.find((m) => m.id === movieId);
+            return (
+              movie && (
+                <Col key={movie.id} md={3}>
+                  <Card className="h-100 shadow">
+                    <Card.Img
+                      variant="top"
+                      src={movie.ImageURL}
+                      style={{ width: "100%", height: "75%" }}
+                    />
+                    <Card.Body>
+                      <Card.Title>{movie.Title}</Card.Title>
+                      <Card.Text>{movie.Year}</Card.Text>
+                      <Button
+                        variant="danger"
+                        onClick={() => removeFavorites(movieId)}
+                        style={{ marginTop: "10px" }}
+                      >
+                        Remove
+                      </Button>
+                    </Card.Body>
+                  </Card>
+                </Col>
+              )
+            );
+          })
+        ) : (
+          <p>No favorite movies</p>
+        )}
+      </Row>
+      <Row
+        style={{
+          marginTop: "30px",
+          padding: "10px",
+          backgroundColor: "LightCyan",
+        }}
+      >
+        <h3>Update User Info</h3>
+        <Form onSubmit={handleUpdate}>
+          <Form.Group as={Row} className="mb-3" controlId="formUsername">
+            <Form.Label column sm={2}>
+              Username:
+            </Form.Label>
+            <Form.Control
+              type="text"
+              name="Username"
+              value={formData.Username}
+              onChange={handleInputChange}
+            />
+          </Form.Group>
+          <Form.Group as={Row} className="mb-3" controlId="formPassword">
+            <Form.Label>Password:</Form.Label>
+            <Form.Control
+              type="password"
+              name="Password"
+              value={formData.Password}
+              onChange={handleInputChange}
+            />
+          </Form.Group>
+          <Form.Group as={Row} className="mb-3" controlId="formEmail">
+            <Form.Label>Email:</Form.Label>
+            <Form.Control
+              type="email"
+              name="Email"
+              value={formData.Email}
+              onChange={handleInputChange}
+            />
+          </Form.Group>
+          <Form.Group as={Row} className="mb-3" controlId="formBirthday">
+            <Form.Label>Birthday:</Form.Label>
+            <Form.Control
+              type="date"
+              name="Birthday"
+              value={formData.Birthday}
+              onChange={handleInputChange}
+            />
+          </Form.Group>
+          <Button type="submit">Update</Button>
+          <Button onClick={handleDelete} variant="danger">
+            Deregister
+          </Button>
+        </Form>
+        {console.log("User Data:", user) && null}
+      </Row>
+    </Container>
   );
 };
