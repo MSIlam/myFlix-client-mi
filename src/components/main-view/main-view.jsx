@@ -58,7 +58,7 @@ export const MainView = () => {
       />
       <Row
         className="justify-content-md-centre"
-        style={{ marginTop: "60px", padding: "20px" }}
+        style={{ marginTop: "80px", padding: "20px" }}
       >
         <Routes>
           <Route
@@ -68,7 +68,7 @@ export const MainView = () => {
                 {user ? (
                   <Navigate to="/" />
                 ) : (
-                  <Col md={5}>
+                  <Col>
                     <SignupView />
                   </Col>
                 )}
@@ -103,7 +103,7 @@ export const MainView = () => {
                 ) : movies.length === 0 ? (
                   <Col>This list is empty!</Col>
                 ) : (
-                  <Col md={8}>{<MovieView movies={movies} />}</Col>
+                  <Col md={12}>{<MovieView movies={movies} />}</Col>
                 )}
               </React.Fragment>
             }
@@ -122,7 +122,9 @@ export const MainView = () => {
                       <Col className="mb-4" key={movie.id} md={3}>
                         <MovieCard
                           movie={movie}
-                          // addToFavorites={addToFavorites}
+                          user={user}
+                          setUser={setUser}
+                          token={storedToken}
                         />
                       </Col>
                     ))}
@@ -136,8 +138,8 @@ export const MainView = () => {
             element={
               <React.Fragment>
                 {user ? (
-                  <Col md={8}>
-                    <ProfileView />
+                  <Col>
+                    <ProfileView movies={movies} />
                   </Col>
                 ) : (
                   <Navigate to="/login" replace />

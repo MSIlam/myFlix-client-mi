@@ -8,22 +8,16 @@ export const MovieView = ({ movies }) => {
   // console.log("movieId:", movieId);
 
   const movie = movies.find((m) => m.id === id);
-  // const movie = movies.find((movie) => {
-  //   console.log("movie._id:", movie._id);
-  //   console.log("Comparison result:", movie._id === movieId);
-  //   return movie._id === movieId;
-  // });
-
   return (
-    <Container>
-      <Row className="movie-details  justify-content-md-center">
-        <Col className="col-lg-6">
+    <Container className="d-flex  align-items-center">
+      <Row>
+        <Col>
           <Card className="movie-image">
             <Card.Img src={movie.ImageURL} alt={movie.Title} />
           </Card>
         </Col>
-        <Col className="col-lg-6">
-          <Card>
+        <Col>
+          <Card className="movie-details">
             <Card.Body>
               <Card.Title>{movie.Title}</Card.Title>
               <Card.Title>Description:</Card.Title>
@@ -39,11 +33,11 @@ export const MovieView = ({ movies }) => {
               <Card.Title>Actors:</Card.Title>
               <Card.Text>{movie.Stars}</Card.Text>
             </Card.Body>
-            <Link to={"/"}>
-              <Button className="back-button" style={{ cursor: "pointer" }}>
-                Back
-              </Button>
-            </Link>
+            <Card.Body className="text-center">
+              <Link to={"/"}>
+                <Button>Back</Button>
+              </Link>
+            </Card.Body>
           </Card>
         </Col>
       </Row>
