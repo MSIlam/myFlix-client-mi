@@ -2,10 +2,9 @@ import React, { useState, useEffect } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Card from "react-bootstrap/Card";
-import { Link } from "react-router-dom";
 import { Container, Row, Col } from "react-bootstrap";
 
-export const ProfileView = ({ movie, movies }) => {
+export const ProfileView = ({ movies }) => {
   const [user, setUserData] = useState(null);
   const [formData, setFormData] = useState({
     Username: "",
@@ -83,6 +82,29 @@ export const ProfileView = ({ movie, movies }) => {
       });
   };
 
+  // const removeFavorites = (movieId) => {
+  //   fetch(
+  //     `https://myflix-mi-e89972ef7472.herokuapp.com/users/${user._id}/movies/${movieId}`,
+  //     {
+  //       method: "DELETE",
+  //       headers: { Authorization: `Bearer ${storedToken}` },
+  //     }
+  //   )
+  //     .then(() => {
+  //       // Remove the movieId from the FavouriteMovies array in user state
+  //       setUserData((prevUser) => {
+  //         const updatedUser = { ...prevUser };
+  //         updatedUser.FavouriteMovies = updatedUser.FavouriteMovies.filter(
+  //           (id) => id !== movieId
+  //         );
+  //         return updatedUser;
+  //       });
+  //     })
+  //     .catch((error) => {
+  //       console.error("Error removing movie from favorites:", error);
+  //     });
+  // };
+
   const removeFavorites = (movieId) => {
     fetch(
       `https://myflix-mi-e89972ef7472.herokuapp.com/users/${user._id}/movies/${movieId}`,
@@ -98,6 +120,10 @@ export const ProfileView = ({ movie, movies }) => {
           updatedUser.FavouriteMovies = updatedUser.FavouriteMovies.filter(
             (id) => id !== movieId
           );
+
+          // Update the user data in local storage
+          localStorage.setItem("user", JSON.stringify(updatedUser));
+
           return updatedUser;
         });
       })
@@ -105,6 +131,7 @@ export const ProfileView = ({ movie, movies }) => {
         console.error("Error removing movie from favorites:", error);
       });
   };
+
   return (
     <Container>
       <Row style={{ marginTop: "30px", padding: "10px" }}>
