@@ -32,7 +32,15 @@ export const SignupView = () => {
     });
   };
   return (
-    <Form onSubmit={handleSubmit}>
+    <Form
+      onSubmit={handleSubmit}
+      style={{
+        marginTop: "30px",
+        padding: "10px",
+        backgroundColor: "AliceBlue",
+        maxWidth: "500px",
+      }}
+    >
       <Form.Group controlId="formUsername">
         <Form.Label>Username:</Form.Label>
         <Form.Control
@@ -72,7 +80,9 @@ export const SignupView = () => {
           required
         />
       </Form.Group>
-      <Button type="submit"> Signup </Button>
+      <Button type="submit" style={{ marginTop: "10px" }}>
+        Signup
+      </Button>
     </Form>
   );
 };

@@ -23,7 +23,7 @@ export const ProfileView = ({ movies }) => {
       setUserData(storedUser);
       setFormData({
         Username: storedUser.Username || "",
-        Password: storedUser.Password || "",
+        Password: "",
         Email: storedUser.Email || "",
         Birthday: new Date(storedUser.Birthday).toISOString().split("T")[0],
       });
@@ -81,29 +81,6 @@ export const ProfileView = ({ movies }) => {
         console.error("Error deleting user:", error);
       });
   };
-
-  // const removeFavorites = (movieId) => {
-  //   fetch(
-  //     `https://myflix-mi-e89972ef7472.herokuapp.com/users/${user._id}/movies/${movieId}`,
-  //     {
-  //       method: "DELETE",
-  //       headers: { Authorization: `Bearer ${storedToken}` },
-  //     }
-  //   )
-  //     .then(() => {
-  //       // Remove the movieId from the FavouriteMovies array in user state
-  //       setUserData((prevUser) => {
-  //         const updatedUser = { ...prevUser };
-  //         updatedUser.FavouriteMovies = updatedUser.FavouriteMovies.filter(
-  //           (id) => id !== movieId
-  //         );
-  //         return updatedUser;
-  //       });
-  //     })
-  //     .catch((error) => {
-  //       console.error("Error removing movie from favorites:", error);
-  //     });
-  // };
 
   const removeFavorites = (movieId) => {
     fetch(
@@ -184,6 +161,9 @@ export const ProfileView = ({ movies }) => {
           marginTop: "30px",
           padding: "10px",
           backgroundColor: "LightCyan",
+          maxWidth: "500px",
+          display: "flex",
+          justifyContent: "space-between",
         }}
       >
         <h3>Update User Info</h3>
@@ -227,11 +207,10 @@ export const ProfileView = ({ movies }) => {
             />
           </Form.Group>
           <Button type="submit">Update</Button>
-          <Button onClick={handleDelete} variant="danger">
+          <Button onClick={handleDelete} variant="danger" className="ml-auto">
             Deregister
           </Button>
         </Form>
-        {console.log("User Data:", user) && null}
       </Row>
     </Container>
   );

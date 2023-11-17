@@ -68,7 +68,7 @@ export const MainView = () => {
                 {user ? (
                   <Navigate to="/" />
                 ) : (
-                  <Col>
+                  <Col md={5} className="mx-auto">
                     <SignupView />
                   </Col>
                 )}
@@ -82,7 +82,7 @@ export const MainView = () => {
                 {user ? (
                   <Navigate to="/" />
                 ) : (
-                  <Col md={5}>
+                  <Col md={5} className="mx-auto">
                     <LoginView
                       onLoggedIn={(user, token) => {
                         setUser(user);
