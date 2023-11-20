@@ -2,9 +2,12 @@ import React from "react";
 import Container from "react-bootstrap/Container";
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
+import Form from "react-bootstrap/Form";
+import FormControl from "react-bootstrap/FormControl";
 import { Link } from "react-router-dom";
+import "./navigation-bar.css";
 
-export const NaviBar = ({ user, onLoggedOut }) => {
+export const NaviBar = ({ user, onLoggedOut, resetSearch, setSearchMovie }) => {
   return (
     <Navbar
       className="bg-body-tertiary"
@@ -17,9 +20,10 @@ export const NaviBar = ({ user, onLoggedOut }) => {
         <Navbar.Brand
           as={Link}
           to="/"
-          style={{ color: "darkred", fontWeight: "bold" }}
+          style={{ color: "CadetBlue", fontWeight: "bold" }}
+          onClick={resetSearch}
         >
-          My Flix
+          CineFlix
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse className="justify-content-end" id="basic-navbar-nav">
@@ -43,7 +47,12 @@ export const NaviBar = ({ user, onLoggedOut }) => {
             )}
             {user && (
               <React.Fragment>
-                <Nav.Link as={Link} to="/" style={{ color: "white" }}>
+                <Nav.Link
+                  as={Link}
+                  to="/"
+                  style={{ color: "white" }}
+                  onClick={resetSearch}
+                >
                   Home
                 </Nav.Link>
                 <Nav.Link onClick={onLoggedOut} style={{ color: "white" }}>
@@ -52,19 +61,13 @@ export const NaviBar = ({ user, onLoggedOut }) => {
               </React.Fragment>
             )}
           </Nav>
-          <Navbar.Text>
-            Signed in as:
-            {user ? (
-              <span>
-                <strong>{user.Username}</strong>
-              </span>
-            ) : (
-              <Link to="/login" style={{ color: "white" }}>
-                {" "}
-                None{" "}
-              </Link>
-            )}
-          </Navbar.Text>
+          <Form>
+            <FormControl
+              type="text"
+              placeholder="Search movies..."
+              onChange={(e) => setSearchMovie(e.target.value)}
+            />
+          </Form>
         </Navbar.Collapse>
       </Container>
     </Navbar>
