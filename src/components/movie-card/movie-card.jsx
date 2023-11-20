@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 import { useState, useEffect } from "react";
 import { Button, Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
-// import "./movie-card.scss";
 
 export const MovieCard = ({ movie, user, setUser, token }) => {
   // State to track whether the movie is marked as a favorite
@@ -14,8 +13,6 @@ export const MovieCard = ({ movie, user, setUser, token }) => {
   }, [user, movie]);
 
   const addToFavorites = () => {
-    console.log("User:", user);
-    console.log("Movie:", movie);
     if (!user) {
       console.error("User is undefined.");
       return;
@@ -68,13 +65,18 @@ export const MovieCard = ({ movie, user, setUser, token }) => {
   };
 
   return (
-    <Card className="h-100 shadow">
-      <Card.Img
-        variant="top"
-        src={movie.ImageURL}
-        style={{ width: "100%", height: "75%" }}
-      />
-
+    <Card className="h-100 shadow ">
+      <div>
+        <Card.Img
+          variant="top"
+          src={movie.ImageURL}
+          style={{
+            width: "100%",
+            height: "450px",
+            objectFit: "cover",
+          }}
+        />
+      </div>
       <Card.Body>
         <Card.Title>{movie.Title}</Card.Title>
         <Card.Text>{movie.Year}</Card.Text>
