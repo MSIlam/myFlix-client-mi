@@ -1,0 +1,20 @@
+/* NavigationBar.css */
+@media (max-width: 768px) {
+    .navbar {
+        max-width: 500px;
+    }
+    .navbar-brand {
+      margin-right: 0;
+    }
+    .navbar-nav {
+      flex-direction: column;
+      width: 100%;
+      text-align: center;
+      margin-top: 10px;
+    }
+    .navbar-nav .nav-link {
+      margin-right: auto;
+      margin-bottom: 5px;
+    }
+  }
+  
