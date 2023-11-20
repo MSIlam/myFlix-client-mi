@@ -16,11 +16,18 @@ export const NaviBar = ({ user, onLoggedOut, resetSearch, setSearchMovie }) => {
       bg="dark"
       data-bs-theme="dark"
     >
-      <Container fluid>
+      <Container
+        fluid
+        style={{
+          marginRight: "20px",
+          marginLeft: "20px",
+          fontSize: "20px",
+        }}
+      >
         <Navbar.Brand
           as={Link}
           to="/"
-          style={{ color: "CadetBlue", fontWeight: "bold" }}
+          style={{ color: "CadetBlue", fontWeight: "bold", fontSize: "36px" }}
           onClick={resetSearch}
         >
           CineFlix

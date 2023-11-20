@@ -74,7 +74,7 @@ export const MainView = () => {
         className="justify-content-center align-items-center row-main"
         style={{
           height: "100vh",
-          marginTop: "80px",
+          marginTop: "100px",
           "@media (maxWidth: 1200px)": {
             marginTop: "70px",
           },

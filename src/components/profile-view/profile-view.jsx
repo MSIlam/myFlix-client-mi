@@ -113,73 +113,84 @@ export const ProfileView = ({ movies }) => {
 
   return (
     <Container>
-      <Row style={{ marginTop: "30px", padding: "10px" }}>
-        {user ? (
-          <React.Fragment>
-            <h2>{user.Username || "Username not available"}</h2>
-            <p>Email: {user.Email || "Email not available"}</p>
-            <p>Birthday: {user.Birthday || "Birthday not available"}</p>
-          </React.Fragment>
-        ) : (
-          <p>Error loading user data</p>
-        )}
+      <Row>
+        <Col style={{ marginTop: "30px", padding: "10px" }}>
+          {user ? (
+            <React.Fragment>
+              <h2>Profile</h2>
+              <p style={{ fontSize: "20px" }}>
+                Username: {user.Username || "Username not available"}
+              </p>
+              <p style={{ fontSize: "20px" }}>
+                Email: {user.Email || "Email not available"}
+              </p>
+              <p style={{ fontSize: "20px" }}>
+                Birthday: {user.Birthday || "Birthday not available"}
+              </p>
+            </React.Fragment>
+          ) : (
+            <p>Error loading user data</p>
+          )}
+        </Col>
+        <Col
+          style={{
+            marginTop: "30px",
+            padding: "10px",
+          }}
+        >
+          <h2>Update User Info</h2>
+          <div>
+            <Form onSubmit={handleUpdate} style={{ fontSize: "20px" }}>
+              <Form.Group as={Row} className="mb-3" controlId="formUsername">
+                <Form.Label column sm={2}>
+                  Username:
+                </Form.Label>
+                <Form.Control
+                  type="text"
+                  name="Username"
+                  value={formData.Username}
+                  onChange={handleInputChange}
+                />
+              </Form.Group>
+              <Form.Group as={Row} className="mb-3" controlId="formPassword">
+                <Form.Label>Password:</Form.Label>
+                <Form.Control
+                  type="password"
+                  name="Password"
+                  onChange={handleInputChange}
+                  autoComplete="new-password"
+                />
+              </Form.Group>
+              <Form.Group as={Row} className="mb-3" controlId="formEmail">
+                <Form.Label>Email:</Form.Label>
+                <Form.Control
+                  type="email"
+                  name="Email"
+                  value={formData.Email}
+                  onChange={handleInputChange}
+                />
+              </Form.Group>
+              <Form.Group as={Row} className="mb-3" controlId="formBirthday">
+                <Form.Label>Birthday:</Form.Label>
+                <Form.Control
+                  type="date"
+                  name="Birthday"
+                  value={formData.Birthday}
+                  onChange={handleInputChange}
+                />
+              </Form.Group>
+              <Button type="submit">Update</Button>
+              <Button
+                onClick={handleDelete}
+                variant="danger"
+                className="ml-auto"
+              >
+                Deregister
+              </Button>
+            </Form>
+          </div>
+        </Col>{" "}
       </Row>
-      <Row
-        style={{
-          marginTop: "30px",
-          padding: "10px",
-          backgroundColor: "LightCyan",
-          maxWidth: "500px",
-          display: "flex",
-          justifyContent: "space-between",
-        }}
-      >
-        <h3>Update User Info</h3>
-        <Form onSubmit={handleUpdate}>
-          <Form.Group as={Row} className="mb-3" controlId="formUsername">
-            <Form.Label column sm={2}>
-              Username:
-            </Form.Label>
-            <Form.Control
-              type="text"
-              name="Username"
-              value={formData.Username}
-              onChange={handleInputChange}
-            />
-          </Form.Group>
-          <Form.Group as={Row} className="mb-3" controlId="formPassword">
-            <Form.Label>Password:</Form.Label>
-            <Form.Control
-              type="password"
-              name="Password"
-              onChange={handleInputChange}
-              autoComplete="new-password"
-            />
-          </Form.Group>
-          <Form.Group as={Row} className="mb-3" controlId="formEmail">
-            <Form.Label>Email:</Form.Label>
-            <Form.Control
-              type="email"
-              name="Email"
-              value={formData.Email}
-              onChange={handleInputChange}
-            />
-          </Form.Group>
-          <Form.Group as={Row} className="mb-3" controlId="formBirthday">
-            <Form.Label>Birthday:</Form.Label>
-            <Form.Control
-              type="date"
-              name="Birthday"
-              value={formData.Birthday}
-              onChange={handleInputChange}
-            />
-          </Form.Group>
-          <Button type="submit">Update</Button>
-          <Button onClick={handleDelete} variant="danger" className="ml-auto">
-            Deregister
-          </Button>
-        </Form>
-      </Row>{" "}
       <br></br>
       <Row
         style={{

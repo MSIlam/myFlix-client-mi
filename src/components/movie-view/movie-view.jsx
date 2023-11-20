@@ -18,7 +18,11 @@ export const MovieView = ({ movies }) => {
         </Col>
         <Col>
           <Card className="movie-details">
-            <Card.Body>
+            <Card.Body
+              style={{
+                fontSize: "20px",
+              }}
+            >
               <Card.Title>{movie.Title}</Card.Title>
               <Card.Title>Description:</Card.Title>
               <Card.Text>{movie.Description}</Card.Text>
