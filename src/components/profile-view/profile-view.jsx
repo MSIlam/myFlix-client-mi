@@ -2,13 +2,14 @@ import React, { useState, useEffect } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Card from "react-bootstrap/Card";
+import { useNavigate } from "react-router-dom";
 import { Container, Row, Col } from "react-bootstrap";
 
 export const ProfileView = ({ movies }) => {
+  const navigate = useNavigate();
   const [user, setUserData] = useState(null);
   const [formData, setFormData] = useState({
     Username: "",
-    Password: "",
     Email: "",
     Birthday: "",
   });
@@ -23,7 +24,6 @@ export const ProfileView = ({ movies }) => {
       setUserData(storedUser);
       setFormData({
         Username: storedUser.Username || "",
-        Password: "",
         Email: storedUser.Email || "",
         Birthday: new Date(storedUser.Birthday).toISOString().split("T")[0],
       });
@@ -72,7 +72,9 @@ export const ProfileView = ({ movies }) => {
       .then((response) => {
         if (response.ok) {
           setUserData(null);
+          localStorage.removeItem("user");
           alert("Your account has been deleted");
+          navigate("/login");
         } else {
           alert("Something went wrong.");
         }
@@ -122,40 +124,6 @@ export const ProfileView = ({ movies }) => {
           <p>Error loading user data</p>
         )}
       </Row>
-      <Row>
-        <h3>Favorite Movies</h3>
-        {user && user.FavouriteMovies ? (
-          user.FavouriteMovies.map((movieId) => {
-            const movie = movies.find((m) => m.id === movieId);
-            return (
-              movie && (
-                <Col key={movie.id} md={3}>
-                  <Card className="h-100 shadow">
-                    <Card.Img
-                      variant="top"
-                      src={movie.ImageURL}
-                      style={{ width: "100%", height: "75%" }}
-                    />
-                    <Card.Body>
-                      <Card.Title>{movie.Title}</Card.Title>
-                      <Card.Text>{movie.Year}</Card.Text>
-                      <Button
-                        variant="danger"
-                        onClick={() => removeFavorites(movieId)}
-                        style={{ marginTop: "10px" }}
-                      >
-                        Remove
-                      </Button>
-                    </Card.Body>
-                  </Card>
-                </Col>
-              )
-            );
-          })
-        ) : (
-          <p>No favorite movies</p>
-        )}
-      </Row>
       <Row
         style={{
           marginTop: "30px",
@@ -184,8 +152,8 @@ export const ProfileView = ({ movies }) => {
             <Form.Control
               type="password"
               name="Password"
-              value={formData.Password}
               onChange={handleInputChange}
+              autoComplete="new-password"
             />
           </Form.Group>
           <Form.Group as={Row} className="mb-3" controlId="formEmail">
@@ -211,6 +179,51 @@ export const ProfileView = ({ movies }) => {
             Deregister
           </Button>
         </Form>
+      </Row>{" "}
+      <br></br>
+      <Row
+        style={{
+          marginTop: "30px",
+        }}
+      >
+        <h3>Favorite Movies</h3>
+        {user && user.FavouriteMovies ? (
+          user.FavouriteMovies.map((movieId) => {
+            const movie = movies.find((m) => m.id === movieId);
+            return (
+              movie && (
+                <Col
+                  key={movie.id}
+                  md={3}
+                  style={{
+                    padding: "10px",
+                  }}
+                >
+                  <Card className="h-100 shadow">
+                    <Card.Img
+                      variant="top"
+                      src={movie.ImageURL}
+                      style={{ width: "100%", height: "75%" }}
+                    />
+                    <Card.Body>
+                      <Card.Title>{movie.Title}</Card.Title>
+                      <Card.Text>{movie.Year}</Card.Text>
+                      <Button
+                        variant="danger"
+                        onClick={() => removeFavorites(movieId)}
+                        style={{ marginTop: "10px" }}
+                      >
+                        Remove
+                      </Button>
+                    </Card.Body>
+                  </Card>
+                </Col>
+              )
+            );
+          })
+        ) : (
+          <p>No favorite movies</p>
+        )}
       </Row>
     </Container>
   );
