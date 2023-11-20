@@ -41,4 +41,5 @@ Login view
 #### Server
 - Netlify
 #### The app can be visited at
-- GitHub: 
+- GitHub: https://github.com/MSIlam/myFlix-client-mi.git
+- Netlify: https://myflix-mi.netlify.app 
