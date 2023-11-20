@@ -1,6 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { MovieCard } from "../movie-card/movie-card";
+import { SingleMovieView } from "../movie-card/singlemovie-view";
 import { MovieView } from "../movie-view/movie-view";
 import { LoginView } from "../login-view/login-view";
 import { SignupView } from "../signup-view/signup-view";
@@ -15,6 +16,11 @@ export const MainView = () => {
   const storedToken = localStorage.getItem("token");
   const [movies, setMovies] = useState([]);
   const [user, setUser] = useState(storedUser);
+  const [searchMovie, setSearchMovie] = useState("");
+
+  const resetSearch = () => {
+    setSearchMovie("");
+  };
 
   // Hooking
   useEffect(() => {
@@ -47,6 +53,11 @@ export const MainView = () => {
       });
   }, [user, storedToken]);
 
+  // Filter movies based on search term
+  const filteredMovies = movies.filter((movie) =>
+    movie.Title.toLowerCase().includes(searchMovie.toLowerCase())
+  );
+
   return (
     <BrowserRouter>
       <NaviBar
@@ -55,10 +66,28 @@ export const MainView = () => {
           setUser(null);
           localStorage.clear();
         }}
+        setSearchMovie={setSearchMovie}
+        filteredMovies={filteredMovies}
+        resetSearch={resetSearch}
       />
       <Row
-        className="justify-content-md-centre"
-        style={{ marginTop: "80px", padding: "20px" }}
+        className="justify-content-center align-items-center row-main"
+        style={{
+          height: "100vh",
+          marginTop: "80px",
+          "@media (maxWidth: 1200px)": {
+            marginTop: "70px",
+          },
+          "@media (maxWidth: 992px)": {
+            marginTop: "60px",
+          },
+          "@media (maxWidth: 768px)": {
+            marginTop: "50px",
+          },
+          "@media (maxWidth: 443px)": {
+            marginTop: "10px",
+          },
+        }}
       >
         <Routes>
           <Route
@@ -116,10 +145,26 @@ export const MainView = () => {
                   <Navigate to="/login" replace />
                 ) : movies.length === 0 ? (
                   <Col>This list is empty!</Col>
+                ) : filteredMovies.length === 1 ? (
+                  <Col xs={12} sm={10} md={8} lg={6}>
+                    <SingleMovieView
+                      movie={filteredMovies[0]}
+                      user={user}
+                      setUser={setUser}
+                      token={storedToken}
+                    />
+                  </Col>
                 ) : (
                   <React.Fragment>
-                    {movies.map((movie) => (
-                      <Col className="mb-4" key={movie.id} md={3}>
+                    {filteredMovies.map((movie) => (
+                      <Col
+                        key={movie.id}
+                        className="mb-3"
+                        md={4}
+                        lg={3}
+                        xs={12}
+                        sm={6}
+                      >
                         <MovieCard
                           movie={movie}
                           user={user}
