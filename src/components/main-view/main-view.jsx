@@ -161,7 +161,7 @@ export const MainView = () => {
                         key={movie.id}
                         className="mb-3"
                         xs={12}
-                        sm={12}
+                        sm={6}
                         md={4}
                         lg={3}
                       >

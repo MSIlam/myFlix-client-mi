@@ -90,11 +90,9 @@ export const SignupView = () => {
             required
           />
         </Form.Group>
-        <Link to={`/login`}>
-          <Button type="submit" style={{ marginTop: "10px" }}>
-            Signup
-          </Button>
-        </Link>
+        <Button type="submit" style={{ marginTop: "10px" }}>
+          Signup
+        </Button>
       </Form>
     </React.Fragment>
   );
