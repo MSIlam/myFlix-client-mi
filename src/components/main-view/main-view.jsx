@@ -10,6 +10,7 @@ import { NaviBar } from "../navigation-bar/navigation-bar";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import NotFoundView from "../not-found-view/not-found-view";
 
 export const MainView = () => {
   const storedUser = JSON.parse(localStorage.getItem("user"));
@@ -192,6 +193,7 @@ export const MainView = () => {
               </React.Fragment>
             }
           />
+          <Route path="*" element={<NotFoundView />} />
         </Routes>
       </Row>
     </BrowserRouter>

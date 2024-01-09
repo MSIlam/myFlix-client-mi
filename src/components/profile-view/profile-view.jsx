@@ -25,7 +25,9 @@ export const ProfileView = ({ movies }) => {
       setFormData({
         Username: storedUser.Username || "",
         Email: storedUser.Email || "",
-        Birthday: new Date(storedUser.Birthday).toISOString().split("T")[0],
+        Birthday: storedToken.Birthday
+          ? new Date(storedUser.Birthday).toISOString().split("T")[0]
+          : "",
       });
       setStoredToken(token);
     } else {
