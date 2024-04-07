@@ -68,13 +68,17 @@ export const NaviBar = ({ user, onLoggedOut, resetSearch, setSearchMovie }) => {
               </React.Fragment>
             )}
           </Nav>
-          <Form>
-            <FormControl
-              type="text"
-              placeholder="Search movies..."
-              onChange={(e) => setSearchMovie(e.target.value)}
-            />
-          </Form>
+          {user && (
+            <React.Fragment>
+              <Form>
+                <FormControl
+                  type="text"
+                  placeholder="Search movies..."
+                  onChange={(e) => setSearchMovie(e.target.value)}
+                />
+              </Form>
+            </React.Fragment>
+          )}
         </Navbar.Collapse>
       </Container>
     </Navbar>
